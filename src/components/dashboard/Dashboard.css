@@ -1,0 +1,19 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  background: linear-gradient(180deg, #E4E0F6 0%, #D1CFF0 100%);              
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 1500px;
+  min-width: 320px; 
+  margin: 0 auto;
+  width: 80vw; 
+  height: 35vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+

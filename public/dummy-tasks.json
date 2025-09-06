@@ -1,0 +1,12 @@
+[
+  { "title": "Course1", "categoryColor": "purple", "day": "Sun" },
+  { "title": "Course2", "categoryColor": "orange", "day": "Sun" },
+  { "title": "Course7", "categoryColor": "blue", "day": "Mon" },
+  { "title": "Course2", "categoryColor": "orange", "day": "Mon" },
+  { "title": "Course7", "categoryColor": "blue", "day": "Tue" },
+  { "title": "Course1", "categoryColor": "purple", "day": "Wed" },
+  { "title": "Course2", "categoryColor": "orange", "day": "Wed" },
+  { "title": "Course7", "categoryColor": "blue", "day": "Thu" },
+  { "title": "Course1", "categoryColor": "purple", "day": "Thu" },
+  { "title": "Course7", "categoryColor": "gray", "day": "Fri" }
+]

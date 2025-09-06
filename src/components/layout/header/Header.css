@@ -1,0 +1,30 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+/* הלוגו "Bright." */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #5759D2;
+  margin: 0;
+}
+
+.user-name {
+  font-weight: 500;
+  margin-right: 0.5rem;
+  color: #333;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
