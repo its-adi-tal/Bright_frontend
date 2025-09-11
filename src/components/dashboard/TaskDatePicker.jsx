@@ -3,15 +3,13 @@ import 'react-datepicker/dist/react-datepicker.css'
 import styles from "./TaskDatePicker.module.css";
 import { offset, flip, shift, limitShift } from "@floating-ui/dom";
 
-export default function TaskDatePicker({value, onChange}) {
+export default function TaskDatePicker({value, onChange, placeholder="Choose date"}) {
     return (
         <DatePicker 
             selected={value}
-            onChange={onChange}
-            showTimeSelect
-            timeIntervals={15}
-            timeFormat="HH:mm"
-            dateFormat="MMM d, yyyy HH:mm"
+            onChange={(d) => onChange(d)}
+            showTimeSelect={false}
+            dateFormat="dd/MM/yyyy"
             placeholderText="Choose date & time"
             className={styles.input}
             calendarClassName={styles.calendar}

@@ -72,7 +72,8 @@ const fetchTasks= async(startStr,endStr)=>{
 
 };
 
-const refreshBoard = async () => {
+const refreshBoard = async (e) => {
+  e?.preventDefault?.();
   if (!user || !range.start || !range.end) return;
   await fetchTasks(range.start, range.end);
 };
@@ -86,7 +87,8 @@ const addTask = async (taskData) => {
         user_id: user.uid,
         title: taskData.title,
         description: taskData.description?.trim() || null,
-        due_date: taskData.dueAt ? toISO(taskData.dueAt) : null,
+        start_time: taskData.start_time,
+        end_time: taskData.end_time,
         difficulty: String(taskData.difficulty ?? 2),
         category: Number.parseInt(taskData.category || "0", 10), //category into decimal number
     }

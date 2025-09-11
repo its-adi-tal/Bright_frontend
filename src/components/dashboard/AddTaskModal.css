@@ -9,8 +9,8 @@
   border: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   padding: 2rem;
-  width: 25vw;
-  height: 70vh;
+  width: 30vw;
+  height: 71vh;
   max-width: 50vh;
   max-height: 90vh; 
   overflow-y: auto;
@@ -27,6 +27,12 @@
 .input-group .icon {
   margin-right: 14px;
   color: #7c3aed;
+}
+
+.input-group .task-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .confirm-button {
@@ -94,6 +100,8 @@
 .pill-label {
   line-height: 1;
 }
+
+
 
 /* --------- text inputs ---------- */
 .text-input {

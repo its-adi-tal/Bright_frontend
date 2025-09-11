@@ -3,6 +3,7 @@ import './AddTaskModal.css';
 import { FiX, FiCalendar, FiClock, FiEdit2, FiTag, FiSmile, FiActivity, FiTrendingUp } from 'react-icons/fi';
 import {MdSpeed} from 'react-icons/md';
 import TaskDatePicker from '../dashboard/TaskDatePicker'
+import TimeSelect from './TimeSelectPicker';
 
 export default function AddTaskModal({ onClose, onSubmit }) {
   const [title, setTitle] = useState('');
@@ -10,10 +11,11 @@ export default function AddTaskModal({ onClose, onSubmit }) {
   const [difficulty, setDifficulty] = useState(2); //1=Easy, 2=Medium, 3=Difficult
   const [category, setCategory] = useState('');
   const [startTime, setStartTime] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [dueAt, setDueAt] = useState(null); // Date | null
+  //const [startDate, setStartDate] = useState('');
+  //const [endDate, setEndDate] = useState('');
+  //const [dueAt, setDueAt] = useState(null); // Date | null
+  const [date, setDate] = useState(null);
 
   const DIFFICULTY_OPTIONS = [
     {value: 1, difficulty_lable: 'Easy', Icon: FiSmile },
@@ -21,35 +23,40 @@ export default function AddTaskModal({ onClose, onSubmit }) {
     {value: 3, difficulty_lable: 'Hard', Icon: FiTrendingUp},
   ];
 
-  /*
-  const toISO = (dateStr, timeStr) => {
-    if (!dateStr) return null;
-    const now= new Date().toTimeString().slice(0,5)
-    const t= timeStr || now;
-    const iso = new Date(`${dateStr}T${t}:00`);
-    if(isNaN(iso.getTime())) return null;
-    return iso.toISOString();
-  }
-  */
+  const buildDateWithMinutes = (baseDate, minutes) => {
+  if (!baseDate || minutes == null) return null;
+  const d = new Date(baseDate);
+  d.setHours(Math.floor(minutes / 60), minutes % 60, 0, 0);
+  console.log(d);
+  return d;
+  };
+
 
   const toISO = (d) => d instanceof Date && !Number.isNaN(d.getTime()) ? d.toISOString() : null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //if (!title.trim() || !startDate || !endDate) return alert("Fields are required!");
+    //basic validation
     if (!title.trim()) return alert("Title is required");
+
+    const startDateTime = buildDateWithMinutes(date, startTime);
+    let endDateTime = buildDateWithMinutes(date, endTime);
+
+    //if (!title.trim()) return alert("Title is required");
 
     const payload = {
       title: title.trim(),
       description: description || null,
       category: (category || "general").trim(),
       difficulty,
+      start_time: toISO(startDateTime),
+      end_time: toISO(endDateTime),
       //start_time: toISO(startDate, startTime),
       //end_time: toISO(endTime || startDate, endTime),
-      due_at: toISO(dueAt),
+      //due_at: toISO(dueAt),
     };
-      console.log("📦 payload before onSubmit:", payload);
+    console.log("📦 payload before onSubmit:", payload);
 
     onSubmit(payload);
     onClose();
@@ -84,10 +91,15 @@ export default function AddTaskModal({ onClose, onSubmit }) {
           </div>
           <div className="input-group">
             <FiClock className="icon" />
-            <TaskDatePicker value={dueAt} 
-            onChange={(d) => {
+            <div className="task-row">
+            <TaskDatePicker value={date} onChange={(d) => {
               console.log("onChange DatePicker:", d);
-              setDueAt(d)}} />
+              setDate(d)}} />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            <TimeSelect label="Start" valueMinutes={startTime} onChange={setStartTime} />
+            <TimeSelect label="End"   valueMinutes={endTime}   onChange={setEndTime} />
+              </div>
+          </div>
           </div> 
 
           <div className="input-group">

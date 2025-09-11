@@ -36,7 +36,7 @@
 
 :global(.react-datepicker__close-icon::after) {
   content: "×";
-  right: 30px;
+  right: 40px;
   background: transparent;   
   color: #6B7CFF;            
   font-size: 18px;
