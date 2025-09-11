@@ -3,7 +3,7 @@ import userImg from './user.png';
 import './UserMenu.css'; 
 import {UserContext} from '../../../../context/UserContext.jsx'
 import { signInWithPopup, signOut } from "firebase/auth";
-import { auth, provider } from "../../../../services/firebase";
+import { auth, provider } from "../../../../lib/firebase.js";
 import {useAuthHandler} from "../../../../hooks/useAuthHandler.js"
 
 export default function UserMenu() {

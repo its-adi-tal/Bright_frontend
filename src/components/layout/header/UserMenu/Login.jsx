@@ -1,6 +1,6 @@
 
 import React from "react";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { auth, provider } from "../firebase"; 
 
 function LoginButton() {

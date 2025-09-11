@@ -6,7 +6,7 @@ export default function MainContent() {
   return (
     <div className="main-content">
       <Dashboard />
-      {/* בהמשך נכניס כאן את הכותרת Week, כפתורי החצים, גרף עוגה וכו' */}
+      {/*Here will be graphs, arrows ect*/}
     </div>
   );
 }

@@ -1,11 +1,11 @@
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45); /* רקע כהה */
+  background: rgba(0,0,0,0.45); /*dark background*/
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1001; /* חשוב: מעל הכל */
+  z-index: 1001; 
 }
 
 .modal-card {

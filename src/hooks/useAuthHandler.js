@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import { signInWithPopup } from "firebase/auth";
-import {auth, provider} from "../services/firebase"
+import {auth, provider} from "../lib/firebase"
 import {UserContext} from "../context/UserContext"
 
 export const useAuthHandler= () => {

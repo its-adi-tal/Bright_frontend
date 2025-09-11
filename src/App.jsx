@@ -1,6 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import Dashboard from './components/dashboard/Dashboard';
-import Header from "./components/layout/Header/Header";
+import Header from "./components/layout/header/Header";
 import { UserContext } from './context/UserContext';
 import { TaskProvider } from './context/TaskContext';
 import {getAuth,onAuthStateChanged} from 'firebase/auth';

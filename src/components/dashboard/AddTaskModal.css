@@ -5,12 +5,13 @@
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: white;
-  border-radius: 12px;
+  padding: 4px 0;          
+  border: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   padding: 2rem;
-  width: 20vw;
-  height: 50vh;
-  max-width: 500px;
+  width: 25vw;
+  height: 70vh;
+  max-width: 50vh;
   max-height: 90vh; 
   overflow-y: auto;
 }
@@ -19,13 +20,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: none;
   padding: 8px 12px;
 }
 
 .input-group .icon {
-  margin-right: 8px;
+  margin-right: 14px;
   color: #7c3aed;
 }
 
@@ -45,4 +45,75 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 999;
+}
+
+/* ------------ Difficulty pills ---------- */
+.pill-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 9999px;            
+  border: 1px solid #D9DFF7;        
+  background: #EDEFFE;              
+  color: #1F2A44;
+  font-size: 0.85rem;                      
+  font-weight: 400;
+  box-shadow: 0 1px 0 rgba(16,24,40,.04);
+  transition: transform .06s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+}
+
+.pill-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(31, 63, 179, .16);
+}
+
+.pill-btn:focus-visible {
+  outline: 2px solid #6B7CFF;
+  outline-offset: 2px;
+}
+
+.pill-btn.active {
+  background: linear-gradient(180deg, #5B7CFF 0%, #4157F5 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(65, 87, 245, .35);
+}
+
+.pill-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.pill-label {
+  line-height: 1;
+}
+
+/* --------- text inputs ---------- */
+.text-input {
+  flex: 1;
+  border: 1px solid #D9DFF7;
+  border-radius: 8px;       
+  background: #EDEFFE;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  color: #141923;
+  outline: none;
+  transition: all .15s ease;
+}
+
+.text-input::placeholder {
+  color: #7E89A3;
+}
+
+.text-input:focus {
+  background: #fff;
+  border-color: #6B7CFF;
+  box-shadow: 0 4px 12px rgba(65, 87, 245, 0.25);
 }

@@ -1,0 +1,123 @@
+:root {
+  --primary: #6B7CFF;
+  --primary-600: #6B7CFF;
+  --ring: rgba(65, 87, 245, 0.25);
+  --text: #141923;
+  --muted: #7E89A3;
+  --bg: #ffffff;
+  --stroke: #E6E9FF;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #D9DFF7;
+  border-radius: 9999px;
+  background: #EDEFFE;
+  padding: 10px 14px;
+  padding-right: 18px;
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+  transition: all .15s ease;
+}
+
+.input::placeholder { color: var(--muted); }
+.input:focus {
+  background: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 6px 16px var(--ring);
+}
+
+:global(.react-datepicker__close-icon) {
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+:global(.react-datepicker__close-icon::after) {
+  content: "×";
+  right: 30px;
+  background: transparent;   
+  color: #6B7CFF;            
+  font-size: 18px;
+  font-weight: 700;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popper {
+  z-index: 1000;
+}
+
+.calendar {
+  background: var(--bg);
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(65, 87, 245, 0.18);
+  overflow: hidden; /* פינות עגולות */
+  font-size: 14px;
+}
+
+.calendar :global(.react-datepicker__header) {
+  background: var(--bg);
+  border-bottom: 1px solid var(--stroke);
+  padding-top: 10px;
+}
+.calendar :global(.react-datepicker__current-month) {
+  font-weight: 700;
+  color: var(--text);
+}
+.calendar :global(.react-datepicker__navigation-icon::before) {
+  border-color: var(--primary);
+}
+
+/* days in calender */
+.calendar :global(.react-datepicker__day) {
+  border-radius: 10px;
+  line-height: 2.2rem;
+  width: 2.2rem;
+  margin: 0.15rem;
+}
+.calendar :global(.react-datepicker__day--selected),
+.calendar :global(.react-datepicker__day--keyboard-selected) {
+  background: var(--primary);
+  color: #fff;
+}
+.calendar :global(.react-datepicker__day:hover) {
+  background: #f2f4ff;
+}
+
+
+.calendar :global(.react-datepicker__time-container) {
+  border-left: 1px solid var(--stroke);
+}
+
+.calendar :global(.react-datepicker__time-container) {
+  min-width: 120px;
+}
+
+.calendar :global(.react-datepicker__time-box) {
+  width: 100%;
+}
+.calendar :global(.react-datepicker__time-list) {
+  height: 280px; 
+  padding-right: 6px; /* space for scrolling */
+}
+.calendar :global(.react-datepicker__time-list-item) {
+  border-radius: 8px;
+  margin: 2px 6px;
+}
+.calendar :global(.react-datepicker__time-list-item--selected) {
+  background: var(--primary) !important;
+  color: #fff;
+}
+
+.calendar :global(.react-datepicker__triangle) {
+  color: var(--bg);
+  fill: var(--bg);
+}

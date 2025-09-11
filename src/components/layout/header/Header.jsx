@@ -9,7 +9,7 @@ export default function Header() {
         <h1 className="logo">Bright.</h1>
       </div>
       <div className="header-center">
-        {/* בעתיד אפשר לשים כאן תפריט או ניווט */}
+        {/* Possiable to have here menu in the future */}
       </div>
       <div className="header-right">
         <div className="ml-auto mr-4">

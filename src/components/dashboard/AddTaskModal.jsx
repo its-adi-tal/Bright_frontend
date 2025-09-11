@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
 import './AddTaskModal.css';
-import { FiX, FiCalendar, FiClock, FiEdit2, FiTag } from 'react-icons/fi';
+import { FiX, FiCalendar, FiClock, FiEdit2, FiTag, FiSmile, FiActivity, FiTrendingUp } from 'react-icons/fi';
 import {MdSpeed} from 'react-icons/md';
+import TaskDatePicker from '../dashboard/TaskDatePicker'
 
 export default function AddTaskModal({ onClose, onSubmit }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [difficulty, setDifficuly] = useState(2); //1=Easy, 2=Medium, 3=Difficult
+  const [difficulty, setDifficulty] = useState(2); //1=Easy, 2=Medium, 3=Difficult
   const [category, setCategory] = useState('');
   const [startTime, setStartTime] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [dueDate, setDueDate] = useState('');
+  const [dueAt, setDueAt] = useState(null); // Date | null
 
+  const DIFFICULTY_OPTIONS = [
+    {value: 1, difficulty_lable: 'Easy', Icon: FiSmile },
+    {value: 2, difficulty_lable: 'Medium', Icon: FiActivity},
+    {value: 3, difficulty_lable: 'Hard', Icon: FiTrendingUp},
+  ];
+
+  /*
   const toISO = (dateStr, timeStr) => {
     if (!dateStr) return null;
     const now= new Date().toTimeString().slice(0,5)
@@ -22,21 +30,26 @@ export default function AddTaskModal({ onClose, onSubmit }) {
     if(isNaN(iso.getTime())) return null;
     return iso.toISOString();
   }
+  */
+
+  const toISO = (d) => d instanceof Date && !Number.isNaN(d.getTime()) ? d.toISOString() : null;
 
   const handleSubmit = (e) => {
-    //e.preventDefault();
+    e.preventDefault();
 
-    if (!title.trim() || !startDate || !endDate) return alert("Fields are required!");
-    
+    //if (!title.trim() || !startDate || !endDate) return alert("Fields are required!");
+    if (!title.trim()) return alert("Title is required");
+
     const payload = {
       title: title.trim(),
       description: description || null,
-      category: category || "general",
+      category: (category || "general").trim(),
       difficulty,
-      start_time: toISO(startDate, startTime),
-      end_time: toISO(endTime || startDate, endDate),
-      due_date: dueDate || null,
+      //start_time: toISO(startDate, startTime),
+      //end_time: toISO(endTime || startDate, endTime),
+      due_at: toISO(dueAt),
     };
+      console.log("📦 payload before onSubmit:", payload);
 
     onSubmit(payload);
     onClose();
@@ -45,7 +58,7 @@ export default function AddTaskModal({ onClose, onSubmit }) {
   return (
     <div className="modal-overlay">
       <div className="modal-container">
-        <button className="close-button" onClick={onClose}><FiX size={15} /></button>
+        <button className="close-button" onClick={onClose}><FiX size={12} /></button>
         <div className="modal-header">
           <h2>Add Task</h2>
         </div>
@@ -57,6 +70,7 @@ export default function AddTaskModal({ onClose, onSubmit }) {
               placeholder="Title" 
               value={title} 
               onChange={e => setTitle(e.target.value)} 
+              className='text-input'
             />
           </div>
           <div className="input-group">
@@ -65,32 +79,46 @@ export default function AddTaskModal({ onClose, onSubmit }) {
               placeholder="Description" 
               value={description} 
               onChange={e => setDescription(e.target.value)}
+              className='text-input'
             />
           </div>
           <div className="input-group">
             <FiClock className="icon" />
-            <input 
-              type="start at" 
-              value={startTime} 
-              onChange={e => setTime(e.target.value)} 
-            />
-          </div>
+            <TaskDatePicker value={dueAt} 
+            onChange={(d) => {
+              console.log("onChange DatePicker:", d);
+              setDueAt(d)}} />
+          </div> 
+
           <div className="input-group">
             <MdSpeed className='icon' />
-            <input 
-              type="text" 
-              placeholder="Difficulty" 
-              value={difficulty} 
-              onChange={e => setLocation(e.target.value)} 
-            />
+            <div className='pill-group' role='radiogroup' aria-label="Difficulty">
+              {DIFFICULTY_OPTIONS.map(({value, difficulty_lable, Icon}) => (
+                <button
+                  key={value}
+                  type="button"
+                  role="radio"
+                  aria-checked={difficulty === value}
+                  onClick={() => setDifficulty(value)}
+                  className={`pill-btn ${difficulty === value ? "active" : ""}`}
+                >
+                <Icon className='pill-icon' />
+                <span className='pill-lable'>{difficulty_lable}</span>
+                </button>
+              ))}
+            </div>
+            
           </div>
+
+
           <div className="input-group">
             <FiCalendar className="icon" />
             <input 
               type="text" 
               placeholder="Category" 
               value={category} 
-              onChange={e => setCategory(e.target.value)} 
+              onChange={e => setCategory(e.target.value)}
+              className='text-input' 
             />
           </div>
         </div>
